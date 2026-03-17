@@ -43,10 +43,22 @@ const Static = ({ feedBacks }) => {
   return (
     <div>
       <Title text="Static" />
-      <InfoStat fbk="Good" num={feedBacks.Good} />
-      <InfoStat fbk="Neutral" num={feedBacks.Neutral} />
-      <InfoStat fbk="Bad" num={feedBacks.Bad} />
-      <Score feedBacks={feedBacks} />
+      <Table feedBacks={feedBacks} />
+    </div>
+  );
+};
+
+const Table = ({ feedBacks }) => {
+  return (
+    <div>
+      <table>
+        <tbody>
+          <Tr fbk="Good" num={feedBacks.Good} />
+          <Tr fbk="Neutral" num={feedBacks.Neutral} />
+          <Tr fbk="Bad" num={feedBacks.Bad} />
+          <Score feedBacks={feedBacks} />
+        </tbody>
+      </table>
     </div>
   );
 };
@@ -64,8 +76,14 @@ const Score = ({ feedBacks }) => {
   const posRate = totalNum === 0 ? 0 : goodNum / totalNum;
   return (
     <>
-      <p>average: {average}</p>
-      <p>positive: {posRate}</p>
+      <tr>
+        <td>average:</td>
+        <td>{average}</td>
+      </tr>
+      <tr>
+        <td>positive:</td>
+        <td>{posRate}</td>
+      </tr>
     </>
   );
 };
@@ -74,10 +92,13 @@ const Title = ({ text }) => <h1>{text}</h1>;
 
 const Button = ({ onClick, text }) => <button onClick={onClick}>{text}</button>;
 
-const InfoStat = ({ fbk, num }) => (
-  <p>
-    {fbk}: {num}
-  </p>
+const Tr = ({ fbk, num }) => (
+  <>
+    <tr>
+      <td>{fbk}:</td>
+      <td>{num}</td>
+    </tr>
+  </>
 );
 
 export default App;

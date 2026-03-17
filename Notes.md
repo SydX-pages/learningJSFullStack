@@ -82,3 +82,61 @@ const Component = ({var1,var2}) => {...}
    1. “在React中，通常使用*onSomething*命名代表事件的props，使用*handleSomething*命名处理这些事件的函数。”
 6. 调用改变状态的函数会导致组件重新渲染
 
+## d
+
+1. useState()用一个对象
+```js
+const [clicks,setClicks] = useState(
+	{left:0,right:0}
+)
+```
+
+2. 对象传播
+```js
+const newClicks = {
+	...clicks,
+	left:clicks.left+1
+}
+```
+
+3. useState()用一个数组
+```js
+const [allClicks,setAll] = useState([])
+
+const xxxx = () => {
+	setAll(allClicks.concat('L'))
+	xxx
+}
+```
+用concat不要用push等，不要直接改变组件状态
+
+4. 条件渲染
+5. 不能在循环、条件表达式或不是定义组件的函数的地方，只在定义React组件的函数体内，调用Hook（useState、useEffect等）
+```js
+const App = () => {
+  // these are ok
+  const [age, setAge] = useState(0)
+  const [name, setName] = useState('Juha Tauriainen')
+
+  if ( age > 10 ) {
+    // this does not work!
+    const [foobar, setFoobar] = useState(null)
+  }
+
+  for ( let i = 0; i < age; i++ ) {
+    // also this is not good
+    const [rightWay, setRightWay] = useState(false)
+  }
+
+  const notGood = () => {
+    // and this is also illegal
+    const [x, setX] = useState(-1000)
+  }
+
+  return (
+    //...
+  )
+}
+```
+
+6. 
