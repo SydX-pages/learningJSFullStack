@@ -4,6 +4,7 @@ const morgan = require("morgan");
 
 app.use(express.json());
 app.use(morgan("dev"));
+app.use(express.static("dist"));
 
 let persons = [
   {
